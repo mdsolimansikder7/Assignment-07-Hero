@@ -4,10 +4,10 @@ import PriceFallers from "@/components/PriceFallers";
 import AllProducts from "@/components/Allproducts";
 import { type Product } from "@/lib/utils";
 
-// Server Component — সরাসরি API থেকে data fetch করবে
+
 async function getProducts(): Promise<Product[]> {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/products/",
+    "https://openapi.programming-hero.com/api/bazardor/products/",
     { next: { revalidate: 60 } } // ৬০ সেকেন্ড পর পর revalidate
   );
   if (!res.ok) {

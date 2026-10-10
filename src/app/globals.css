@@ -5,11 +5,11 @@
   --font-sans: var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
 }
 
-
 .font-notosans {
   font-family: var(--font-hind-siliguri), sans-serif;
 }
 
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }

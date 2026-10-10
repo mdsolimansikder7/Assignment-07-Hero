@@ -8,7 +8,7 @@ import SortDropdown from "@/components/SortDropdown";
 import LoadingScreen from "@/components/LoadingScreen";
 import { toBengaliNumber, type Product, type Category } from "@/lib/utils";
 
-const API = "https://api.abcz.workers.dev/api/bazardor";
+const API = "https://openapi.programming-hero.com/api/bazardor";
 
 export default function CategoryPage() {
   const params = useParams();

@@ -23,7 +23,7 @@ export default function Navber({
   const today = getBanglaDate();
 
   useEffect(() => {
-    fetch("https://api.abcz.workers.dev/api/bazardor/categories")
+    fetch("https://openapi.programming-hero.com/api/bazardor/categories")
       .then((res) => {
         if (!res.ok) throw new Error("Categories API response ঠিক নেই");
         return res.json();
@@ -113,7 +113,7 @@ export default function Navber({
                   <div className="flex-1 overflow-y-auto px-4 py-5">
                     <div className="flex items-center gap-3">
                       <Image
-                        src="/icon-512.png"
+                        src="/icon.png"
                         alt="logo"
                         width={48}
                         height={48}
@@ -204,7 +204,7 @@ export default function Navber({
             {/* Logo */}
             <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
               <Image
-                src="/icon-512.png"
+                src="/logo.png"
                 alt="logo"
                 width={40}
                 height={40}

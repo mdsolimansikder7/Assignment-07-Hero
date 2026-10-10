@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { formatPrice, toBengaliNumber, type Product } from "@/lib/utils";
 
-const API = "https://api.abcz.workers.dev/api/bazardor";
+const API = "https://openapi.programming-hero.com/api/bazardor";
 
 async function getProducts(): Promise<Product[]> {
   const res = await fetch(`${API}/products`, {

@@ -3,19 +3,20 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 
 if (!process.env.MONGODB_URI) {
-    throw new Error("process.env.MONGODB_URI is not set");
+  throw new Error("process.env.MONGODB_URI is not set");
 }
 
-const globalForMongo = globalThis as unknown as { mongoClient?: MongoClient };
+const globalForMongo = globalThis as unknown as {
+  mongoClientPromise?: Promise<MongoClient>;
+};
 
-const client =
-    globalForMongo.mongoClient ??
-    new MongoClient(process.env.MONGODB_URI, {
-        maxPoolSize: 5,
-    });
+const clientPromise =
+  globalForMongo.mongoClientPromise ??
+  new MongoClient(process.env.MONGODB_URI, { maxPoolSize: 5 }).connect();
 
-globalForMongo.mongoClient = client;
+globalForMongo.mongoClientPromise = clientPromise;
 
+const client = await clientPromise;
 const db = client.db("bazar-dor-web");
 
 export const auth = betterAuth({

@@ -41,9 +41,9 @@ export default function ProductCard({ product }: { product: Product }) {
         <span
           className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1 text-sm font-medium sm:px-3 sm:text-[15px] ${
             isUp
-              ? "bg-red-50 text-red-700"
-              : isDown
               ? "bg-green-50 text-green-700"
+              : isDown
+              ? "bg-red-50 text-red-700"
               : "bg-gray-100 text-gray-600"
           }`}
         >

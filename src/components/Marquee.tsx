@@ -102,11 +102,13 @@ const renderItem = (product: Product) => {
         <span className="font-notosans">{toBanglaNumber(product.today)}</span>{" "}
         টাকা/{UNIT_LABELS[product.unit] ?? product.unit}
       </span>
-      <span
-        className={`text-xs font-medium sm:text-sm ${
-          isPriceUp ? "text-red-600" : "text-green-600"
-        }`}
-      >
+              <span
+                className={`text-xs font-medium sm:text-sm ${
+                  isPriceUp
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
+              >
         {isPriceUp ? "▲" : "▼"}{" "}
         <span className="font-notosans">
           {toBanglaPercent(Math.abs(product.change.pct))}%

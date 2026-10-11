@@ -1,13 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { getBanglaDate } from "@/lib/utils";
 
+const noopSubscribe = () => () => {};
+
 export default function BanglaDate({ className = "" }: { className?: string }) {
-  const [today, setToday] = useState("");
-  useEffect(() => {
-    setToday(getBanglaDate());
-  }, []);
+
+  const today = useSyncExternalStore(
+    noopSubscribe,
+    () => getBanglaDate(), 
+    () => "" 
+  );
 
   return <span className={className}>{today}</span>;
 }

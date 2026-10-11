@@ -15,7 +15,7 @@ export default function Hero() {
             বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
           </p>
           <a
-            href="#all-products"
+            href="#সব-পণ্য"
             className="mt-5 block rounded-lg bg-green-700 px-5 py-2.5 text-center font-semibold text-white shadow-md transition hover:bg-green-800 sm:mt-6 sm:inline-block"
           >
             সব পণ্য দেখুন

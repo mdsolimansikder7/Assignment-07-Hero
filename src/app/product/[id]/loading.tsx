@@ -1,5 +1,5 @@
-import LoadingScreen from "@/components/LoadingScreen";
+import { ProductPageSkeleton } from "@/components/Skeleton";
 
-export default function ProductDetailLoading() {
-  return <LoadingScreen />;
+export default function Loading() {
+  return <ProductPageSkeleton />;
 }

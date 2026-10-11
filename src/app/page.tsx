@@ -4,11 +4,10 @@ import PriceFallers from "@/components/PriceFallers";
 import AllProducts from "@/components/Allproducts";
 import { type Product } from "@/lib/utils";
 
-
 async function getProducts(): Promise<Product[]> {
   const res = await fetch(
     "https://openapi.programming-hero.com/api/bazardor/products/",
-    { next: { revalidate: 60 } } 
+    { next: { revalidate: 60 } }
   );
   if (!res.ok) {
     throw new Error(`Failed to fetch products: ${res.status}`);

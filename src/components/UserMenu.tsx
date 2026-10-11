@@ -79,7 +79,7 @@ export default function UserMenu() {
   if (!session?.user) {
     return (
       <Link
-        href="/sign-in"
+        href="/signin"
         className="rounded-lg bg-[#05893E] px-4 py-2 text-sm font-medium text-white transition hover:bg-green-800"
       >
         সাইন ইন

@@ -37,7 +37,7 @@ const SignInPage = () => {
     const redirectTarget = getRedirectTarget();
     if (!redirectTarget) return;
 
-    const isDetailsPage = redirectTarget.startsWith("/product-details");
+    const isDetailsPage = redirectTarget.startsWith("/product");
 
     toast(
       isDetailsPage
@@ -61,8 +61,6 @@ const SignInPage = () => {
       password: string;
     };
 
-    const redirectTo = getRedirectTarget() ?? "/";
-
     setLoading(true);
     const { data, error } = await authClient.signIn.email({
       email,
@@ -72,7 +70,7 @@ const SignInPage = () => {
 
     if (data) {
       toast.success("সফলভাবে সাইন ইন হয়েছে।");
-      router.push(redirectTo);
+      router.push("/");
       router.refresh();
     }
     if (error) {
@@ -88,14 +86,14 @@ const SignInPage = () => {
   const handleGoogleSignIn = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: getRedirectTarget() ?? "/",
+      callbackURL: "/",
     });
   };
 
   const handleGithubSignIn = async () => {
     await authClient.signIn.social({
       provider: "github",
-      callbackURL: getRedirectTarget() ?? "/",
+      callbackURL: "/",
     });
   };
 
@@ -230,7 +228,7 @@ const SignInPage = () => {
         <p className="mt-4 text-center text-sm text-gray-700 sm:mt-5 sm:text-base">
           অ্যাকাউন্ট নেই?{" "}
           <Link
-            href="/sign-up"
+            href="/signup"
             className="font-medium text-green-700 underline underline-offset-2 hover:text-green-800"
           >
             সাইন আপ করুন

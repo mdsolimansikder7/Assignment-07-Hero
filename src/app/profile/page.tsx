@@ -17,7 +17,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     if (!isPending && !session?.user) {
-      router.replace("/sign-in");
+      router.replace("/signin");
     }
   }, [isPending, session, router]);
 

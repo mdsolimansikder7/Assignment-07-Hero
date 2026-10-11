@@ -5,7 +5,7 @@ export function proxy(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
   if (!sessionCookie) {
-    const signInUrl = new URL("/sign-in", request.url);
+    const signInUrl = new URL("/signin", request.url);
     signInUrl.searchParams.set("redirect", request.nextUrl.pathname);
     return NextResponse.redirect(signInUrl);
   }
@@ -14,9 +14,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/category/:path*",
-    "/product/:path*",
-    "/product-details/:path*",
-  ],
+  matcher: ["/product/:path*", "/profile/:path*"],
 };

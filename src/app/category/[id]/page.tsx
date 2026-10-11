@@ -5,10 +5,30 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
 import SortDropdown from "@/components/SortDropdown";
-import LoadingScreen from "@/components/LoadingScreen";
 import { toBengaliNumber, type Product, type Category } from "@/lib/utils";
 
 const API = "https://openapi.programming-hero.com/api/bazardor";
+
+function CategorySkeleton() {
+  return (
+    <>
+      <section className="container mx-auto px-4 pt-5 sm:pt-6">
+        <div className="skeleton h-24 w-full rounded-2xl" />
+      </section>
+      <section className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="skeleton h-5 w-48" />
+          <div className="skeleton h-10 w-44" />
+        </div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="skeleton h-28 w-full rounded-2xl" />
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
 
 export default function CategoryPage() {
   const params = useParams();
@@ -64,7 +84,7 @@ export default function CategoryPage() {
   });
 
   if (loading) {
-    return <LoadingScreen />;
+    return <CategorySkeleton />;
   }
 
   if (error || products.length === 0) {
@@ -109,10 +129,7 @@ export default function CategoryPage() {
         </div>
       </section>
 
-      <section
-        id="all-products"
-        className="container mx-auto scroll-mt-6 px-4 py-6 sm:py-8"
-      >
+      <section className="container mx-auto px-4 py-6 sm:py-8">
         <div className="mb-3 mt-3 flex flex-col gap-3 sm:mb-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-gray-600 sm:text-base">
             মোট {toBengaliNumber(products.length)}টি পণ্য দেখানো চলছে

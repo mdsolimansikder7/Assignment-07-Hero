@@ -110,13 +110,13 @@ export default function Navber({
             ) : (
               <div className="flex items-center gap-2">
                 <Link
-                  href="/sign-in"
+                  href="/signin"
                   className="rounded-lg border border-green-700 px-4 py-2 text-sm font-medium text-green-700 transition hover:bg-green-50"
                 >
                   সাইন ইন
                 </Link>
                 <Link
-                  href="/sign-up"
+                  href="/signup"
                   className="rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-green-800"
                 >
                   সাইন আপ
@@ -130,6 +130,14 @@ export default function Navber({
       {/* Category Chips Row */}
       <nav className="border-b border-gray-200 bg-[#FAFCFA]">
         <div className="container mx-auto flex items-center gap-1.5 overflow-x-auto overscroll-x-contain whitespace-nowrap px-4 py-2 [scrollbar-width:none] sm:gap-2 sm:py-2.5 [&::-webkit-scrollbar]:hidden">
+          {categories.length === 0 &&
+            Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-8 w-24 shrink-0 animate-pulse rounded-lg bg-gray-200"
+              />
+            ))}
+
           {categories.map((cat) => {
             const isActive = pathname === `/category/${cat.slug}`;
             return (

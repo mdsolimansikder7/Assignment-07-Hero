@@ -8,7 +8,7 @@
 
 বাজার দর (BazarDor) is a Bangla-language web application that helps users check the daily prices of essential products in Bangladesh. It presents everyday items such as rice, lentils, oil, vegetables, fish, meat, eggs, and spices in one place, along with price changes and market-wise price ranges.
 
-The homepage includes a hero section, a scrolling price ticker, products whose prices have increased or decreased, and a complete product list. Users can browse products by category, sort products by price and price movement, and open a product detail page to compare minimum, maximum, and average prices across markets.
+The homepage includes a hero section, a scrolling price ticker, products whose prices have increased or decreased, and a complete product list. Users can browse products by category, sort products by price and price movement, and open a product detail page (after signing in) to compare minimum, maximum, and average prices across markets.
 
 The interface is primarily in Bangla and is designed for mobile, tablet, and desktop screens.
 
@@ -30,28 +30,29 @@ The interface is primarily in Bangla and is designed for mobile, tablet, and des
 
 ## Features
 
-1. **Scrolling price ticker.** Displays selected products, today’s prices, units, and percentage changes in a scrolling strip. The animation pauses on hover.
-2. **Price increases and decreases.** The homepage highlights up to six products whose prices have increased and up to six whose prices have decreased.
-3. **Product list and sorting.** Browse all products and sort by default order, lowest price, highest price, largest price increase, or largest price decrease.
-4. **Category-based browsing.** Explore products through category pages with category information and sorting options.
-5. **Product price details.** View a product’s current price, price movement, market-wise minimum and maximum prices, and calculated minimum, maximum, and average price summaries.
-6. **Authentication.** Sign up and sign in with email/password or Google and GitHub, when the corresponding OAuth providers are configured.
-7. **User profile.** Signed-in users can view their account information, update their profile name, and sign out.
-8. **Bangla-first experience.** Uses Bangla interface text, Bangla digits for displayed prices, and a Bangla date in the navigation area.
-9. **Loading and not-found states.** Includes a loading interface and a custom not-found page for invalid routes or missing content.
-10. **Responsive layout.** Navigation, product cards, and price details adapt to mobile, tablet, and desktop screens.
+1. **Scrolling price ticker.** Displays selected products, today's prices, units, and percentage changes in an infinite scrolling strip. The animation pauses on hover.
+2. **Price increases and decreases.** The homepage highlights the top six products whose prices have increased and the top six whose prices have decreased.
+3. **Product list and sorting.** Browse all products and sort by default order, lowest price, highest price, largest price increase, or largest price decrease. Sorting uses numeric values, not text.
+4. **Category-based browsing.** Explore products through category pages with category information, sorting options, and a friendly empty state for invalid categories.
+5. **Product price details.** Signed-in users can view a product's current price, price movement, market-wise minimum and maximum prices, and calculated minimum, maximum, and average price summaries.
+6. **Authentication.** Sign up and sign in with email/password or Google and GitHub, when the corresponding OAuth providers are configured. Toast messages are shown for success and errors.
+7. **Protected routes.** Product detail and profile pages require sign-in. Unauthenticated visitors are redirected to the sign-in page with a notification.
+8. **User profile.** Signed-in users can view their account information, update their profile name, and sign out.
+9. **Bangla-first experience.** Uses Bangla interface text, Bangla digits for displayed prices, and a Bangla date in the navigation area.
+10. **Loading and not-found states.** Skeleton loaders appear while data is loading, and a custom 404 page handles invalid routes or missing content.
+11. **Responsive layout.** Navigation, product cards, and price details adapt to mobile, tablet, and desktop screens.
 
 ## Pages and Routes
 
-| Route | Description | Authentication |
-|---|---|---|
-| `/` | Hero, price risers, price fallers, and all products | Not required |
-| `/category/[id]` | Products within a category | Route protection is configured |
-| `/product-details/[id]` | Product and market-wise price details | Route protection is configured |
-| `/sign-in` | Sign-in page | Not required |
-| `/sign-up` | Registration page | Not required |
-| `/profile` | User profile and sign-out | Yes |
-| `/profile/update-profile` | Update profile information | Yes |
+| Route                     | Description                                         | Authentication |
+| ------------------------- | --------------------------------------------------- | -------------- |
+| `/`                       | Hero, price risers, price fallers, and all products | Not required   |
+| `/category/[id]`          | Products within a category                          | Not required   |
+| `/product/[id]`           | Product and market-wise price details               | Required       |
+| `/signin`                 | Sign-in page                                        | Not required   |
+| `/signup`                 | Registration page                                   | Not required   |
+| `/profile`                | User profile and sign-out                           | Required       |
+| `/profile/update-profile` | Update profile information                          | Required       |
 
 ## Getting Started
 
@@ -101,12 +102,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Available Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start the development server |
+| Command         | Description                          |
+| --------------- | ------------------------------------ |
+| `npm run dev`   | Start the development server         |
 | `npm run build` | Build the application for production |
-| `npm run start` | Start the production server |
-| `npm run lint` | Run ESLint checks |
+| `npm run start` | Start the production server          |
+| `npm run lint`  | Run ESLint checks                    |
 
 ## Project Structure
 
@@ -115,11 +116,13 @@ src/
 ├── app/
 │   ├── api/auth/              # Better Auth API handler
 │   ├── category/[id]/         # Category products page
-│   ├── product-details/[id]/  # Product price details
+│   ├── product/[id]/          # Product price details
 │   ├── profile/               # User profile and profile update
-│   ├── sign-in/               # Sign-in page
-│   ├── sign-up/               # Sign-up page
+│   ├── signin/                # Sign-in page
+│   ├── signup/                # Sign-up page
 │   ├── layout.tsx             # Root layout, navbar, ticker, footer
+│   ├── loading.tsx            # Home page skeleton loader
+│   ├── not-found.tsx          # Custom 404 page
 │   └── page.tsx               # Homepage
 ├── components/                # Navbar, hero, ticker, cards, sorting, etc.
 ├── lib/                       # Auth configuration and shared utilities

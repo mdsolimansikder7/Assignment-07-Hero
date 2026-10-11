@@ -113,32 +113,27 @@ export default function MobileNav({
                 >
                   হোম
                 </Link>
-                {/* সাইন ইন না থাকলে পণ্য দেখা যাবে না */}
-                {session && (
-                  <>
-                    <Link
-                      href="/#all-products"
-                      className="rounded-lg px-3 py-2.5 font-medium text-gray-800 transition hover:bg-green-50 hover:text-green-700"
-                      onClick={onClose}
-                    >
-                      সব পণ্য
-                    </Link>
-                    {categories.map((cat) => (
-                      <Link
-                        key={cat.slug}
-                        href={`/category/${cat.slug}`}
-                        className={`rounded-lg px-3 py-2.5 font-medium transition ${
-                          pathname === `/category/${cat.slug}`
-                            ? "bg-green-50 text-green-700"
-                            : "text-gray-800 hover:bg-green-50 hover:text-green-700"
-                        }`}
-                        onClick={onClose}
-                      >
-                        <span>{cat.icon}</span> {cat.nameBn}
-                      </Link>
-                    ))}
-                  </>
-                )}
+                <Link
+                  href="/#সব-পণ্য"
+                  className="rounded-lg px-3 py-2.5 font-medium text-gray-800 transition hover:bg-green-50 hover:text-green-700"
+                  onClick={onClose}
+                >
+                  সব পণ্য
+                </Link>
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className={`rounded-lg px-3 py-2.5 font-medium transition ${
+                      pathname === `/category/${cat.slug}`
+                        ? "bg-green-50 text-green-700"
+                        : "text-gray-800 hover:bg-green-50 hover:text-green-700"
+                    }`}
+                    onClick={onClose}
+                  >
+                    <span>{cat.icon}</span> {cat.nameBn}
+                  </Link>
+                ))}
               </nav>
             </div>
             <div className="border-t border-gray-200 px-4 py-4">
@@ -163,14 +158,14 @@ export default function MobileNav({
               ) : (
                 <div className="flex gap-2">
                   <Link
-                    href="/sign-in"
+                    href="/signin"
                     className="flex-1 rounded-lg border border-green-700 px-3 py-2.5 text-center font-medium text-green-700 transition hover:bg-green-50"
                     onClick={onClose}
                   >
                     সাইন ইন
                   </Link>
                   <Link
-                    href="/sign-up"
+                    href="/signup"
                     className="flex-1 rounded-lg bg-green-700 px-3 py-2.5 text-center font-medium text-white transition hover:bg-green-800"
                     onClick={onClose}
                   >

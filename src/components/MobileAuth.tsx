@@ -21,7 +21,7 @@ export default function MobileAuth({ isPending, session }: MobileAuthProps) {
         </Link>
       ) : (
         <Link
-          href="/sign-in"
+          href="/signin"
           className="rounded-lg bg-green-700 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-green-800"
         >
           সাইন ইন

@@ -51,13 +51,13 @@ const SignUpPage = () => {
       name,
       email,
       password,
-      callbackURL: "/",
     });
     setLoading(false);
 
     if (data) {
-      toast.success("অ্যাকাউন্ট তৈরি হয়েছে।");
-      router.push("/");
+      await authClient.signOut();
+      toast.success("অ্যাকাউন্ট তৈরি হয়েছে। এবার সাইন ইন করুন।");
+      router.push("/signin");
       router.refresh();
     }
     if (error) {
@@ -73,12 +73,14 @@ const SignUpPage = () => {
   const handleGoogleSignUp = async () => {
     await authClient.signIn.social({
       provider: "google",
+      callbackURL: "/",
     });
   };
 
   const handleGithubSignUp = async () => {
     await authClient.signIn.social({
       provider: "github",
+      callbackURL: "/",
     });
   };
 
@@ -243,7 +245,7 @@ const SignUpPage = () => {
         <p className="mt-4 text-center text-sm text-gray-700 sm:mt-5 sm:text-base">
           অ্যাকাউন্ট আছে?{" "}
           <Link
-            href="/sign-in"
+            href="/signin"
             className="font-medium text-green-700 underline underline-offset-2 hover:text-green-800"
           >
             সাইন ইন করুন

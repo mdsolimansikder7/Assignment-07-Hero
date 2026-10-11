@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
@@ -35,7 +34,9 @@ export function UserAvatar({
 
   if (image) {
     return (
-      <Image
+      // সাধারণ <img> ব্যবহার করেছি: width/height বা next.config লাগে না
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
         src={image}
         alt={name ?? "User"}
         referrerPolicy="no-referrer"
@@ -53,7 +54,7 @@ export default function UserMenu() {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  
+  // বাইরে ক্লিক করলে বা Escape চাপলে মেনু বন্ধ
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {

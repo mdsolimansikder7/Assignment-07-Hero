@@ -1,24 +1,22 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { auth } from "./lib/auth";
-import { headers } from "next/headers";
+import { NextRequest, NextResponse } from "next/server";
+import { getSessionCookie } from "better-auth/cookies";
 
+export function proxy(request: NextRequest) {
+  const sessionCookie = getSessionCookie(request);
 
-export async function proxy(request: NextRequest) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  const user = session?.user;
-
-  if (!user) {
-    const redirectTo = encodeURIComponent(request.nextUrl.pathname);
-    return NextResponse.redirect(
-      new URL(`/sign-in?redirect=${redirectTo}`, request.url)
-    );
+  if (!sessionCookie) {
+    const signInUrl = new URL("/sign-in", request.url);
+    signInUrl.searchParams.set("redirect", request.nextUrl.pathname);
+    return NextResponse.redirect(signInUrl);
   }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/product-details/:path*", "/profile/:path*"],
+  matcher: [
+    "/category/:path*",
+    "/product/:path*",
+    "/product-details/:path*",
+  ],
 };

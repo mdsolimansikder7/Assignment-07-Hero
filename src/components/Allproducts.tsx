@@ -31,7 +31,7 @@ export default function AllProducts({ products }: { products: Product[] }) {
         </p>
         <SortDropdown value={sortBy} onChange={setSortBy} />
       </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+ <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {sortedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
